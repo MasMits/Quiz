@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import {IQuiz} from "./types/quizTypes";
+import Quiz from "./component/Quiz";
 
 function App() {
 
@@ -17,13 +18,9 @@ function App() {
     }, []);
     async function fetchQuiz() {
         try {
-            // const response = await axios;
             fetch(apiURL).then(res => res.json()).then((data) => {
-                // setQuizData(JSON.parse(data));
                 console.log(data);
                 setQuizData(data);
-                // console.log(B);
-
             })
         } catch (e) {
             alert(e)
@@ -38,9 +35,9 @@ function App() {
                 </p>
                 {quizData === undefined? " " :
                     quizData.results.map((quiz) =>
-                    <div> {quiz.question} </div>
-                )}
-            </header>
+                        <Quiz question={quiz.question} category={quiz.category} correct_answer={quiz.correct_answer} incorrect_answers={quiz.incorrect_answers}/>
+                        )}
+                </header>
         </div>
     );
 }
