@@ -1,23 +1,42 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {IQuiz} from "../types/quizTypes";
 import '../styles/Quiz.css';
 
 const Quiz: FC<IQuiz> = (quizData) => {
 
+    let arr: string[] = [];
+    let correctAnswerPosition = Math.floor(Math.random() * 3);
+    arr.push(...(quizData.incorrect_answers));
+    arr.splice(correctAnswerPosition, 0, quizData.correct_answer);
+    console.log(quizData.correct_answer)
+    console.log(arr)
 
-    useEffect(() => {
-        let correctAnswerPosition = Math.floor(Math.random() * 3);
-        let arr = quizData.incorrect_answers;
-        arr.splice(correctAnswerPosition, 0, quizData.correct_answer);
-
-        console.log(quizData.correct_answer)
-        console.log(arr)
-    }, []);
-
+    enum PossibleAnswer {
+        A ,
+        B ,
+        C ,
+        D ,
+    }
 
     return (
         <div className='Quiz'>
-            {quizData.question}
+            <p>
+                Category [{quizData.category}]
+            </p>
+            <h1>{quizData.question}</h1>
+            {
+                arr.map((answer, index) =>
+                    index === correctAnswerPosition ?
+                        <div>
+                            <button className='correct-answer'> <div className='answer-letter'> {PossibleAnswer[index]} </div>{answer}</button>
+                        </div>
+                        :
+                        <div>
+                            <button className='wrong-answer'> <div className='answer-letter'>  {PossibleAnswer[index]} </div>{answer}</button>
+                        </div>
+                )
+            }
+            <br/>
         </div>
     );
 };

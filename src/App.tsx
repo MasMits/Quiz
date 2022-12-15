@@ -30,9 +30,6 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
                 {quizData === undefined? " " :
                     quizData.results.map((quiz) =>
                         <Quiz question={quiz.question} category={quiz.category} correct_answer={quiz.correct_answer} incorrect_answers={quiz.incorrect_answers}/>

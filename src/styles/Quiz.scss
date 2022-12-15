@@ -1,3 +1,19 @@
 .Quiz{
-  background-color: #021426;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-letter{
+  width: 50px;
+  height: 50px;
+  background: #EDE8E3;
+  border-radius: 50%;
+  display: inline-flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 16px 30px 16px;
+  color: #060710;
 }
