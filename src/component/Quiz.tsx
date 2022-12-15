@@ -28,11 +28,11 @@ const Quiz: FC<IQuiz> = (quizData) => {
                 arr.map((answer, index) =>
                     index === correctAnswerPosition ?
                         <div>
-                            <button className='correct-answer'> <div className='answer-letter'> {PossibleAnswer[index]} </div>{answer}</button>
+                            <button className='answer-button correct-answer'> <div className='answer-letter'> {PossibleAnswer[index]} </div>{answer}</button>
                         </div>
                         :
                         <div>
-                            <button className='wrong-answer'> <div className='answer-letter'>  {PossibleAnswer[index]} </div>{answer}</button>
+                            <button className='answer-button wrong-answer'> <div className='answer-letter'>  {PossibleAnswer[index]} </div>{answer}</button>
                         </div>
                 )
             }

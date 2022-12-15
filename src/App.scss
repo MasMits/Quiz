@@ -91,11 +91,11 @@ h1{
 }
 
 button{
-  //display: block;
-  width: 510px;
+  display: block;
+  width: 240px;
   min-height: 60px;
-  background: #F4F3F6;
-  border: 1px solid #F4F3F6;
+  background: #45C486;
+  border: 1px solid #45C486;
   border-radius: 8px;
   font-family: 'Roboto', serif;
   font-style: normal;
@@ -105,23 +105,10 @@ button{
   /* or 135% */
   margin: 20px;
 
-  color: #060710;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-
+  color: #ffffff;
+  //display: inline-flex;
+  //flex-direction: row;
+  //align-items: center;
+  //justify-content: flex-start;
 }
 
-.correct-answer:hover{
-  background: #45C486;
-  border: 1px solid #45C486;
-  color: #F4F3F6;
-
-}
-.wrong-answer:hover{
-  background: #C44545;
-  border: 1px solid #C44545;
-  color: #F4F3F6;
-
-}

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {IQuiz} from "./types/quizTypes";
 import Quiz from "./component/Quiz";
+import StartPage from "./component/StartPage";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <StartPage/>
                 {quizData === undefined? " " :
                     quizData.results.map((quiz) =>
                         <Quiz question={quiz.question} category={quiz.category} correct_answer={quiz.correct_answer} incorrect_answers={quiz.incorrect_answers}/>

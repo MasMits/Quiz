@@ -1,0 +1,29 @@
+input {
+  //display: block;
+  width: 510px;
+  min-height: 60px;
+  background: #F4F3F6;
+  border: 1px solid #F4F3F6;
+  border-radius: 8px;
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  /* or 135% */
+  margin: 20px;
+
+  color: #060710;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.start-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 20%;
+}
