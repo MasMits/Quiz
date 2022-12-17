@@ -1,17 +1,20 @@
 import React, {FC} from 'react';
 import '../styles/Footer.css';
 import Button from "./ui-component/Button";
+import StatusBar from "./StatusBar";
 
-interface IButtonProps{
+interface IFooterProps{
     continue: Function
+    allQuestions: number
+    completedQuestions: number
 }
 
-const Footer: FC<IButtonProps> = (props) => {
+const Footer: FC<IFooterProps> = (props) => {
 
-    let active = false;
+    let active = true;
     return (
         <div id='footer'>
-            <div id='footer-information'> <Button active={active} continue={props.continue}/> </div>
+            <div id='footer-container'> <StatusBar all={props.allQuestions} completed={props.completedQuestions}/> <Button active={active} continue={props.continue}/> </div>
         </div>
     );
 };
