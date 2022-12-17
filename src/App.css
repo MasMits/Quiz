@@ -103,4 +103,8 @@ button {
   color: #ffffff;
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=App.css.map */
