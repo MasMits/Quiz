@@ -1,43 +1,53 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {IQuiz} from "../types/quizTypes";
 import '../styles/Quiz.css';
+import QuizItem from "./QuizItem";
+import Footer from "./Footer";
 
-const Quiz: FC<IQuiz> = (quizData) => {
+interface IQuizItemProps{
+    quizData: IQuiz
+    all: number
+    completedQuestions: number
+    nextQuestions: Function
+}
 
-    let arr: string[] = [];
-    let correctAnswerPosition = Math.floor(Math.random() * 3);
-    arr.push(...(quizData.incorrect_answers));
-    arr.splice(correctAnswerPosition, 0, quizData.correct_answer);
-    console.log(quizData.correct_answer)
-    console.log(arr)
 
-    enum PossibleAnswer {
-        A ,
-        B ,
-        C ,
-        D ,
+const Quiz: FC<IQuizItemProps> = ({quizData, all, completedQuestions, nextQuestions}) => {
+
+    function  randomizeAnswers (a: IQuiz, correctAnswerPosition: number){
+        let arr: string[] = [];
+        arr.push(...(a.incorrect_answers));
+        arr.splice(correctAnswerPosition, 0, a.correct_answer);
+        return arr;
+    }
+    let correctAnswerPosition: number = useMemo(() => {return Math.floor(Math.random() * 3)}, []);
+    let arr: string[] = useMemo(() => {return randomizeAnswers(quizData, correctAnswerPosition)}, []);
+
+    const [selected, setSelected] = useState<number | undefined>();
+
+    function select(index: number){
+        if(selected === undefined){
+            setSelected(index)
+            console.log("selected")
+        }
     }
 
     return (
-        <div className='Quiz'>
-            <p>
-                Category [{quizData.category}]
-            </p>
-            <h1>{quizData.question}</h1>
-            {
-                arr.map((answer, index) =>
-                    index === correctAnswerPosition ?
-                        <div>
-                            <button className='answer-button correct-answer'> <div className='answer-letter'> {PossibleAnswer[index]} </div>{answer}</button>
-                        </div>
-                        :
-                        <div>
-                            <button className='answer-button wrong-answer'> <div className='answer-letter'>  {PossibleAnswer[index]} </div>{answer}</button>
-                        </div>
-                )
-            }
-            <br/>
-        </div>
+        <>
+            <div className='Quiz'>
+                <p className='category'>
+                    Category [{quizData.category}]
+                </p>
+                <h1 className='question' >{quizData.question}</h1>
+                {
+                    arr.map((answer, index) =>
+                        <QuizItem key={index} index={index} correctAnswerPosition={correctAnswerPosition} answer={answer}  selected={selected} select={select}/>
+                    )
+                }
+                <br/>
+            </div>
+            <Footer continue={nextQuestions} allQuestions={all} completedQuestions={completedQuestions} active={!(selected === undefined)}/>
+        </>
     );
 };
 

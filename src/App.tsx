@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import './App.css';
 import Quiz from "./component/Quiz";
 import StartPage from "./component/StartPage";
-import Footer from "./component/Footer";
 import {useAPILoading} from "./hooks/useAPILoading";
 
 function App() {
     const {data, loading, error} = useAPILoading();
+    console.log(data);
 
     const [isActive, setIsActive] = useState<boolean>(true);
     let all: number = data === undefined ? 0 : data.results.length;
@@ -33,11 +33,11 @@ function App() {
                                 :
                                 data.results.map((quiz, index) =>
                                     index == completedQuestions &&
-                                    <Quiz question={quiz.question} category={quiz.category}
-                                          correct_answer={quiz.correct_answer}
-                                          incorrect_answers={quiz.incorrect_answers}/>
+                                    // <Quiz question={quiz.question} category={quiz.category}
+                                    //       correct_answer={quiz.correct_answer}
+                                    //       incorrect_answers={quiz.incorrect_answers} key={index}/>
+                                    <Quiz quizData={quiz} all={all} completedQuestions={completedQuestions} nextQuestions={nextQuestions}/>
                                 )}
-                            <Footer continue={nextQuestions} allQuestions={all} completedQuestions={completedQuestions}/>
                         </div>
                 }
             </header>

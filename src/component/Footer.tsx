@@ -7,14 +7,14 @@ interface IFooterProps{
     continue: Function
     allQuestions: number
     completedQuestions: number
+    active: boolean
 }
 
 const Footer: FC<IFooterProps> = (props) => {
 
-    let active = true;
     return (
         <div id='footer'>
-            <div id='footer-container'> <StatusBar all={props.allQuestions} completed={props.completedQuestions}/> <Button active={active} continue={props.continue}/> </div>
+            <div id='footer-container'> <StatusBar all={props.allQuestions} completed={props.completedQuestions}/> <Button active={props.active} continue={props.continue}/> </div>
         </div>
     );
 };
