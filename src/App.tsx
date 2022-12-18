@@ -3,6 +3,7 @@ import './App.css';
 import Quiz from "./component/Quiz";
 import StartPage from "./component/StartPage";
 import {useAPILoading} from "./hooks/useAPILoading";
+import EndPage from "./component/EndPage";
 
 function App() {
     const {data, loading, error} = useAPILoading();
@@ -13,6 +14,8 @@ function App() {
     const [completedQuestions, setCompletedQuestions] = useState<number>(0);
 
     const hiddenElement: string = loading? " hidden" : "";
+    const end: boolean = completedQuestions === all;
+
 
     function startQuiz(){
         setIsActive(false);
@@ -40,6 +43,7 @@ function App() {
                                 )}
                         </div>
                 }
+                {end && <EndPage/>}
             </header>
 
         </div>

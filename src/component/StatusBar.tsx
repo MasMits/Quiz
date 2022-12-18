@@ -8,7 +8,7 @@ interface IStatusBar{
 const StatusBar: FC<IStatusBar> = (props) => {
     return (
         <div>
-            {props.all} / {props.completed + 1}
+            {props.completed + 1} / {props.all}
         </div>
     );
 };
